@@ -10,14 +10,13 @@ describe('<GuessForm />', () => {
   });
 
   it('Should fire the onGuess callback when the form is submitted', () => {
-    const payload = {"guess": "10", "type": "MAKE_GUESS"}
     const dispatch = jest.fn()
     const wrapper = mount(<GuessForm dispatch={dispatch} />);
-    const value = payload.guess;
+    const value = "10";
     
     wrapper.find('input[type="text"]').node.value = value;
     wrapper.simulate('submit');
-    expect(dispatch).toHaveBeenCalledWith(payload);
+    expect(dispatch).toHaveBeenCalledWith(makeGuess(value));
   });
 
   it('Should reset the input when the form is submitted', () => {
